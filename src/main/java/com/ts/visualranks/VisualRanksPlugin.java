@@ -33,6 +33,7 @@ import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.luckperms.api.LuckPerms;
 import net.milkbowl.vault.economy.Economy;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Server;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -151,6 +152,8 @@ public class VisualRanksPlugin extends JavaPlugin {
         Stream.of(
                 new PlaceholderApiController(placeholderApiHook.getVisualUserCache())
         ).forEach(plugin -> this.getServer().getPluginManager().registerEvents(plugin, this));
+
+        new Metrics(this, 18235);
 
         long elapsed = started.elapsed().toMillis();
         this.getLogger().info("Successfully loaded VisualRanks in " + elapsed + "ms");

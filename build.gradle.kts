@@ -54,6 +54,9 @@ dependencies {
 
     // Caffeine
     compileOnly("com.github.ben-manes.caffeine:caffeine:3.1.1")
+
+    // bstats
+    implementation("org.bstats:bstats-bukkit:3.0.2")
 }
 
 bukkit {
