@@ -16,8 +16,9 @@ public class PluginConfiguration implements ReloadableConfig {
 
     @Contextual
     public static class DatabaseSection {
-        public DatabaseType databaseType = DatabaseType.MYSQL;
 
+        @Description({ "", "# Database backend type, can be set to MYSQL or MARIADB, SQLITE, H2, POSTGRESQL"})
+        public DatabaseType databaseType = DatabaseType.SQLITE;
         public String hostname = "localhost";
         public String database = "visualrank";
         public String username = "root";

@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "com.ts"
-version = "1.0.0"
+version = "1.0.1"
 
 repositories {
     mavenCentral()
@@ -65,7 +65,7 @@ bukkit {
     prefix = "VisualRanks"
     name = "VisualRanks"
     version = "${project.version}"
-    depend = listOf("Vault", "PlaceholderAPI", "LuckPerms", "EnderPick-Coins")
+    depend = listOf("Vault", "PlaceholderAPI", "LuckPerms")
     libraries = listOf(
         "org.postgresql:postgresql:42.5.0",
         "com.h2database:h2:2.1.214",
@@ -112,7 +112,8 @@ tasks.withType<ShadowJar> {
         "org.slf4j",
         "com.google.gson",
         "javassist",
-        "kotlin"
+        "kotlin",
+        "org.bstats"
     ).forEach { pack ->
         relocate(pack, "$prefix.$pack")
     }
