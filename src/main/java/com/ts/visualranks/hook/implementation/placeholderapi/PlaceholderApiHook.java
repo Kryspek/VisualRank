@@ -1,6 +1,7 @@
 package com.ts.visualranks.hook.implementation.placeholderapi;
 
 import com.ts.visualranks.configuration.implementation.VisualRankConfiguration;
+import com.ts.visualranks.configuration.implementation.VisualRankItem;
 import com.ts.visualranks.hook.Hook;
 import com.ts.visualranks.visualrank.VisualRank;
 import com.ts.visualranks.visualrank.VisualRankManager;
@@ -47,7 +48,7 @@ public class PlaceholderApiHook extends PlaceholderExpansion implements Hook {
                 return this.getUserGroupPrefix(player);
             }
 
-            Optional<VisualRankConfiguration> visualRankOptional = this.visualRankManager.getVisualRank(visualUser.getCurrentRank());
+            Optional<VisualRankItem> visualRankOptional = this.visualRankManager.getVisualRank(visualUser.getCurrentRank());
 
             if (visualRankOptional.isEmpty()) {
                 return this.getUserGroupPrefix(player);
@@ -94,7 +95,7 @@ public class PlaceholderApiHook extends PlaceholderExpansion implements Hook {
 
     @Override
     public @NotNull String getAuthor() {
-        return "ts";
+        return "eripe14";
     }
 
     @Override

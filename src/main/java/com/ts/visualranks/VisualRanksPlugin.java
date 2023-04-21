@@ -2,6 +2,8 @@ package com.ts.visualranks;
 
 import com.ts.visualranks.command.InvalidUsage;
 import com.ts.visualranks.command.PermissionMessage;
+import com.ts.visualranks.command.argument.VisualRankArgument;
+import com.ts.visualranks.command.argument.VisualUserArgument;
 import com.ts.visualranks.command.implementation.VisualRanksCommand;
 import com.ts.visualranks.configuration.ConfigurationManager;
 import com.ts.visualranks.configuration.implementation.InventoriesConfiguration;
@@ -19,9 +21,11 @@ import com.ts.visualranks.notification.NotificationAnnouncer;
 import com.ts.visualranks.scheduler.BukkitSchedulerImpl;
 import com.ts.visualranks.scheduler.Scheduler;
 import com.ts.visualranks.util.LegacyColorProcessor;
+import com.ts.visualranks.visualrank.VisualRank;
 import com.ts.visualranks.visualrank.VisualRankInventory;
 import com.ts.visualranks.visualrank.VisualRankManager;
 import com.ts.visualranks.visualrank.purchase.PurchaseService;
+import com.ts.visualranks.visualrank.user.VisualUser;
 import com.ts.visualranks.visualrank.user.VisualUserRepository;
 import com.google.common.base.Stopwatch;
 import dev.rollczi.litecommands.LiteCommands;
@@ -129,6 +133,8 @@ public class VisualRanksPlugin extends JavaPlugin {
 
         this.liteCommands = LiteBukkitFactory.builder(server, "visual-ranks")
                 .argument(Player.class, new BukkitPlayerArgument<>(this.getServer(), this.messageConfiguration.wrongUsage.onlyForPlayer))
+                .argument(VisualRank.class, new VisualRankArgument(this.visualRanksConfiguration, this.messageConfiguration))
+                .argument(VisualUser.class, new VisualUserArgument(this.visualUserRepository, this.messageConfiguration, this.getServer()))
 
                 .contextualBind(Player.class, new BukkitOnlyPlayerContextual<>(this.messageConfiguration.wrongUsage.onlyForPlayer))
 
@@ -152,8 +158,6 @@ public class VisualRanksPlugin extends JavaPlugin {
         Stream.of(
                 new PlaceholderApiController(placeholderApiHook.getVisualUserCache())
         ).forEach(plugin -> this.getServer().getPluginManager().registerEvents(plugin, this));
-
-        new Metrics(this, 18235);
 
         long elapsed = started.elapsed().toMillis();
         this.getLogger().info("Successfully loaded VisualRanks in " + elapsed + "ms");
