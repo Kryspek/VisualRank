@@ -29,6 +29,8 @@ public class MessageConfiguration implements ReloadableConfig {
         public String cantFindPlayer = "&4Can not find that player!";
 
         public String onlyForPlayer = "&4Command only for players!";
+
+        public String noRank = "&4This rank doesn't exist!";
     }
 
     @Contextual
@@ -44,6 +46,10 @@ public class MessageConfiguration implements ReloadableConfig {
         public String resetVisualRank = "&aYou have reset your visual rank!";
 
         public String reloadConfiguration = "&aYou have reloaded configuration!";
+
+        public String addVisualRank = "&aYou have added &7{RANK} &arank for &7{PLAYER}&a!";
+
+        public String recivedVisualRank = "&aYou have recived &7{RANK} &arank!";
 
     }
 

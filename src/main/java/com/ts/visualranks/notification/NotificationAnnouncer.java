@@ -6,6 +6,8 @@ import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.UUID;
+
 public final class NotificationAnnouncer {
 
     private final AudienceProvider audienceProvider;
@@ -22,10 +24,10 @@ public final class NotificationAnnouncer {
         audience.sendMessage(this.miniMessage.deserialize(message));
     }
 
-    public void sendActionBar(Player player, String message) {
-        Audience audience = this.audience(player);
+    public void sendMessage(UUID uniqueId, String message) {
+        Audience audience = this.audienceProvider.player(uniqueId);
 
-        audience.sendActionBar(this.miniMessage.deserialize(message));
+        audience.sendMessage(this.miniMessage.deserialize(message));
     }
 
     private Audience audience(CommandSender sender) {
@@ -35,5 +37,7 @@ public final class NotificationAnnouncer {
 
         return this.audienceProvider.console();
     }
+
+
 
 }

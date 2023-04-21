@@ -2,6 +2,7 @@ package com.ts.visualranks.visualrank;
 
 import com.ts.visualranks.configuration.ConfigurationManager;
 import com.ts.visualranks.configuration.implementation.VisualRankConfiguration;
+import com.ts.visualranks.configuration.implementation.VisualRankItem;
 import com.ts.visualranks.configuration.implementation.VisualRanksConfiguration;
 
 import java.util.Collections;
@@ -36,11 +37,11 @@ public class VisualRankManager {
         return this.visualRankRepository.exists(name);
     }
 
-    public Optional<VisualRankConfiguration> getVisualRank(String name) {
+    public Optional<VisualRankItem> getVisualRank(String name) {
         return Optional.ofNullable(this.visualRankRepository.getVisualRank(name));
     }
 
-    public List<VisualRankConfiguration> getVisualRanks() {
+    public List<VisualRankItem> getVisualRanks() {
         return Collections.unmodifiableList(this.visualRankRepository.getVisualRanks());
     }
 

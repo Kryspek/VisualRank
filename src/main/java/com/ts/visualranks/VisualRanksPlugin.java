@@ -1,8 +1,8 @@
 package com.ts.visualranks;
 
-import com.ts.visualranks.command.handler.InvalidUsage;
-import com.ts.visualranks.command.handler.PermissionMessage;
-import com.ts.visualranks.command.handler.implementation.VisualRanksCommand;
+import com.ts.visualranks.command.InvalidUsage;
+import com.ts.visualranks.command.PermissionMessage;
+import com.ts.visualranks.command.implementation.VisualRanksCommand;
 import com.ts.visualranks.configuration.ConfigurationManager;
 import com.ts.visualranks.configuration.implementation.InventoriesConfiguration;
 import com.ts.visualranks.configuration.implementation.MessageConfiguration;
@@ -142,7 +142,7 @@ public class VisualRanksPlugin extends JavaPlugin {
                         this.inventoriesConfiguration,
                         this.messageConfiguration,
                         this.notificationAnnouncer
-                ), this.notificationAnnouncer, this.messageConfiguration, this.configurationManager))
+                ), this.notificationAnnouncer, this.messageConfiguration, this.configurationManager, visualUserRepository, purchaseService, server))
 
                 .invalidUsageHandler(new InvalidUsage(this.notificationAnnouncer, this.messageConfiguration))
                 .permissionHandler(new PermissionMessage(this.messageConfiguration, this.notificationAnnouncer))

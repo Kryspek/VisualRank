@@ -1,11 +1,7 @@
 package com.ts.visualranks.visualrank;
 
 import com.ts.visualranks.EventCaller;
-import com.ts.visualranks.configuration.implementation.InventoriesConfiguration;
-import com.ts.visualranks.configuration.implementation.ItemConfiguration;
-import com.ts.visualranks.configuration.implementation.ItemConfigurationSlot;
-import com.ts.visualranks.configuration.implementation.MessageConfiguration;
-import com.ts.visualranks.configuration.implementation.VisualRankConfiguration;
+import com.ts.visualranks.configuration.implementation.*;
 import com.ts.visualranks.notification.NotificationAnnouncer;
 import com.ts.visualranks.scheduler.Scheduler;
 import com.ts.visualranks.util.Legacy;
@@ -88,9 +84,9 @@ public class VisualRankInventory {
                     .orTimeout(15, TimeUnit.SECONDS)
                     .join();
 
-            VisualRankSetEvent visualRankSetEvent = new VisualRankSetEvent(uuid);
-
             this.setItem(gui, visualRanksInventory.resetCurrentRank, event -> {
+                VisualRankSetEvent visualRankSetEvent = new VisualRankSetEvent(uuid);
+
                 this.notificationAnnouncer.sendMessage(player, visualRankSection.resetVisualRank);
 
                 user.setCurrentRank("");
@@ -107,7 +103,7 @@ public class VisualRankInventory {
                 gui.close(player);
             });
 
-            for (VisualRankConfiguration visualRank : this.visualRankManager.getVisualRanks()) {
+            for (VisualRankItem visualRank : this.visualRankManager.getVisualRanks()) {
                 Formatter formatter = new Formatter()
                         .register("{RANK}", this.getUserGroupPrefix(player) + visualRank.getName())
                         .register("{PRICE}", visualRank.getPrice())
@@ -125,6 +121,8 @@ public class VisualRankInventory {
                     }
 
                     gui.addItem(boughtRankItem.asGuiItem(event -> {
+                        VisualRankSetEvent visualRankSetEvent = new VisualRankSetEvent(uuid);
+
                         this.notificationAnnouncer.sendMessage(player, formatter.format(visualRankSection.equipRank));
 
                         user.setCurrentRank(visualRank.getName());

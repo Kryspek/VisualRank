@@ -18,6 +18,7 @@ repositories {
     maven { url = uri("https://jitpack.io") }
     maven { url = uri("https://repo.extendedclip.com/content/repositories/placeholderapi/") }
     maven { url = uri("https://hub.spigotmc.org/nexus/content/repositories/snapshots/") }
+    maven { url = uri("https://repo.rosewooddev.io/repository/public/" ) }
 }
 
 dependencies {
@@ -57,6 +58,9 @@ dependencies {
 
     // bstats
     implementation("org.bstats:bstats-bukkit:3.0.2")
+
+    // PlayerPoints
+    compileOnly("org.black_ixx:playerpoints:3.0.0")
 }
 
 bukkit {

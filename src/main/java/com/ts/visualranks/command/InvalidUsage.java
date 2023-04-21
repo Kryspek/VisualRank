@@ -1,4 +1,4 @@
-package com.ts.visualranks.command.handler;
+package com.ts.visualranks.command;
 
 import com.ts.visualranks.configuration.implementation.MessageConfiguration;
 import com.ts.visualranks.notification.NotificationAnnouncer;

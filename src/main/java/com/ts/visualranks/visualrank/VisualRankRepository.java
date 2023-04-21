@@ -1,6 +1,7 @@
 package com.ts.visualranks.visualrank;
 
 import com.ts.visualranks.configuration.implementation.VisualRankConfiguration;
+import com.ts.visualranks.configuration.implementation.VisualRankItem;
 
 import java.util.List;
 
@@ -12,8 +13,8 @@ public interface VisualRankRepository {
 
     boolean exists(String name);
 
-    VisualRankConfiguration getVisualRank(String name);
+    VisualRankItem getVisualRank(String name);
 
-    List<VisualRankConfiguration> getVisualRanks();
+    List<VisualRankItem> getVisualRanks();
 
 }

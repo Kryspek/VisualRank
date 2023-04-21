@@ -16,17 +16,17 @@ import java.util.List;
 public class VisualRanksConfiguration implements ReloadableConfig, VisualRankRepository {
 
     @Description({ " ", "# VisualRanks configuration" })
-    private List<VisualRankConfiguration> visualRanks = List.of(
-        new VisualRankConfiguration("test",  100),
-        new VisualRankConfiguration("King",  200)
+    private List<VisualRankItem> visualRanks = List.of(
+            new VisualRankItem("Budowniczy",  100),
+            new VisualRankItem("Architekt",  200)
     );
 
     @Override
     public void createVisualRank(String name, int price) {
-        VisualRankConfiguration visualRankConfiguration = new VisualRankConfiguration(name, price);
+        VisualRankItem visualRankItem = new VisualRankItem(name, price);
 
-        List<VisualRankConfiguration> clonedVisualRanks = new ArrayList<>(this.visualRanks);
-        clonedVisualRanks.add(visualRankConfiguration);
+        List<VisualRankItem> clonedVisualRanks = new ArrayList<>(this.visualRanks);
+        clonedVisualRanks.add(visualRankItem);
 
         this.visualRanks = clonedVisualRanks;
     }
@@ -44,7 +44,7 @@ public class VisualRanksConfiguration implements ReloadableConfig, VisualRankRep
 
     @Execute
     @Override
-    public VisualRankConfiguration getVisualRank(String name) {
+    public VisualRankItem getVisualRank(String name) {
         return this.visualRanks.stream()
                 .filter(visualRank -> visualRank.getName().equalsIgnoreCase(name))
                 .findFirst()
@@ -53,7 +53,7 @@ public class VisualRanksConfiguration implements ReloadableConfig, VisualRankRep
 
     @Exclude
     @Override
-    public List<VisualRankConfiguration> getVisualRanks() {
+    public List<VisualRankItem> getVisualRanks() {
         return Collections.unmodifiableList(this.visualRanks);
     }
 
