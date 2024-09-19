@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "com.ts"
-version = "1.0.1"
+version = "1.2.0"
 
 repositories {
     mavenCentral()
@@ -23,7 +23,7 @@ repositories {
 
 dependencies {
     // Spigot api
-    compileOnly("org.spigotmc:spigot-api:1.19.3-R0.1-SNAPSHOT")
+    compileOnly("org.spigotmc:spigot-api:1.20.4-R0.1-SNAPSHOT")
 
     // Kyori Adventure
     implementation("net.kyori:adventure-platform-bukkit:4.2.0")
@@ -91,7 +91,7 @@ tasks.withType<JavaCompile> {
 }
 
 tasks.withType<ShadowJar> {
-    archiveFileName.set("VisualRanks v${project.version} (MC 1.19.x).jar")
+    archiveFileName.set("VisualRanks v${project.version} (MC 1.20.x).jar")
 
     exclude(
         "org/intellij/lang/annotations/**",
